@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackOnBuild>true</PackOnBuild>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageVersion>3.1.1-pre</PackageVersion>
+    <Authors>PorriDG3</Authors>
+    <Owners>PorriDG3</Owners>
+    <PackageProjectUrl>https://github.com/d0972058277/KnstArchitecture/tree/3.1.1</PackageProjectUrl>
+    <Title>KnstArchitecture</Title>
+    <Description>KnstArchitecture</Description>
+    <Copyright>PorriDG3</Copyright>
+    <Summary>KnstArchitecture</Summary>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <PackageReference Include="System.Text.Json" Version="4.7.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.5" />
+  </ItemGroup>
+
+</Project>

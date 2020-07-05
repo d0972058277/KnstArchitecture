@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackOnBuild>true</PackOnBuild>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageVersion>3.1.1-pre</PackageVersion>
+    <Authors>PorriDG3</Authors>
+    <Owners>PorriDG3</Owners>
+    <PackageProjectUrl>https://github.com/d0972058277/KnstArchitecture/tree/3.1.1</PackageProjectUrl>
+    <Title>KnstArchitecture.EF</Title>
+    <Description>KnstArchitecture.EF</Description>
+    <Copyright>PorriDG3</Copyright>
+    <Summary>KnstArchitecture.EF</Summary>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KnstArchitecture.Sql\KnstArchitecture.Sql.csproj" />
+  </ItemGroup>
+
+</Project>

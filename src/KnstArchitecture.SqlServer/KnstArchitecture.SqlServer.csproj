@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackOnBuild>true</PackOnBuild>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageVersion>3.1.1-pre</PackageVersion>
+    <Authors>PorriDG3</Authors>
+    <Owners>PorriDG3</Owners>
+    <PackageProjectUrl>https://github.com/d0972058277/KnstArchitecture/tree/3.1.1</PackageProjectUrl>
+    <Title>KnstArchitecture.SqlServer</Title>
+    <Description>KnstArchitecture.SqlServer</Description>
+    <Copyright>PorriDG3</Copyright>
+    <Summary>KnstArchitecture.SqlServer</Summary>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KnstArchitecture.EF\KnstArchitecture.EF.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.4" />
+  </ItemGroup>
+
+</Project>

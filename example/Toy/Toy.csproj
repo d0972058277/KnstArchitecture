@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.3">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Dapper" Version="2.0.35" />
+    <PackageReference Include="Serilog.Enrichers.CorrelationId" Version="3.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.4.1" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="3.0.1" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
+    <PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
+    <PackageReference Include="Serilog.Exceptions" Version="5.4.0" />
+    <PackageReference Include="CorrelationId" Version="2.1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Repos\" />
+    <Folder Include="Repos\Example\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\KnstArchitecture.MySql\KnstArchitecture.MySql.csproj" />
+    <ProjectReference Include="..\..\src\KnstArchitecture\KnstArchitecture.csproj" />
+    <ProjectReference Include="..\..\src\KnstArchitecture.MongoDB\KnstArchitecture.MongoDB.csproj" />
+    <ProjectReference Include="..\..\src\KnstArchitecture.MultiSql\KnstArchitecture.MultiSql.csproj" />
+  </ItemGroup>
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+</Project>

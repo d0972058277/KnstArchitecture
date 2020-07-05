@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "PorriDG3",
+  "classifications": [
+    "KnstArchitecture",
+    "WebApi"
+  ],
+  "identity": "KnstArchitecture.Toy",
+  "name": "Knst Project Template",
+  "shortName": "knst",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "KnstApi",
+  "preferNameDirectory": true
+}
