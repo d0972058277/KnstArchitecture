@@ -1,6 +1,8 @@
 using System;
+using System.Data;
 using KnstArchitecture.DbSessions;
 using KnstArchitecture.Repos;
+using KnstArchitecture.Test.Mocks;
 using KnstArchitecture.UnitOfWorks;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
@@ -16,6 +18,7 @@ namespace KnstArchitecture.Test.Abstraction
         {
             var services = new ServiceCollection();
             services.AddKnstArchitectureSql();
+            services.AddTransient<IDbConnection>(sp => DbConnectionMoq.MockInterface());
 
             var serviceProvider = services.BuildServiceProvider();
             ServiceScope = serviceProvider.CreateScope();
