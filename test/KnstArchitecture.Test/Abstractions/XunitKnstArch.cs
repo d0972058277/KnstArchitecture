@@ -3,24 +3,32 @@ using KnstArchitecture.DbSessions;
 using KnstArchitecture.Repos;
 using KnstArchitecture.UnitOfWorks;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace KnstArchitecture.Test
 {
-    public class StartupFixture : IDisposable
+    public abstract class XunitKnstArch : IDisposable
     {
-        public StartupFixture()
+        public IServiceProvider ServiceProvider;
+        public IServiceScope ServiceScope;
+
+        public XunitKnstArch()
         {
             var services = new ServiceCollection();
-            services.TryAddKnstArchitecture();
+            services.TryAddTransient<ITestRepo, TestRepo>();
+            services.TryAddKnstArchitectureDbSessionBag();
             services.AddTransient<ITestDbSession, TestDbSession>();
             services.AddScoped<ITestUnitOfWork, TestUnitOfWork>();
 
-            ServiceProvider = services.BuildServiceProvider();
+            var serviceProvider = services.BuildServiceProvider();
+            ServiceScope = serviceProvider.CreateScope();
+            ServiceProvider = ServiceScope.ServiceProvider;
         }
 
-        public IServiceProvider ServiceProvider { get; }
-
-        public void Dispose() { }
+        public void Dispose()
+        {
+            ServiceScope.Dispose();
+        }
     }
 
     public interface ITestDbSession : IDbSession { }
