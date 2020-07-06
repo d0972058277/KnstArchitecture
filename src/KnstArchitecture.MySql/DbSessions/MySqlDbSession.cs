@@ -1,11 +1,11 @@
+using System.Data;
 using System;
-using MySql.Data.MySqlClient;
 
 namespace KnstArchitecture.DbSessions
 {
     public class MySqlDbSession : EFCoreDbSession, IMySqlDbSession
     {
-        public MySqlDbSession(IDbSessionBag dbSessionBag, MySqlConnection connection, IServiceProvider serviceProvider) : base(dbSessionBag, connection, serviceProvider) { }
+        public MySqlDbSession(IDbSessionBag dbSessionBag, IDbConnection connection, IServiceProvider serviceProvider) : base(dbSessionBag, connection, serviceProvider) { }
 
         public new IMySqlDbSession BeginTransaction()
         {

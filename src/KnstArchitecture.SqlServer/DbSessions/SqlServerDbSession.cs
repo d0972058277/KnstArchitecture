@@ -1,11 +1,11 @@
 using System;
-using Microsoft.Data.SqlClient;
+using System.Data;
 
 namespace KnstArchitecture.DbSessions
 {
     public class SqlServerDbSession : EFCoreDbSession, ISqlServerDbSession
     {
-        public SqlServerDbSession(IDbSessionBag dbSessionBag, SqlConnection connection, IServiceProvider serviceProvider) : base(dbSessionBag, connection, serviceProvider) { }
+        public SqlServerDbSession(IDbSessionBag dbSessionBag, IDbConnection connection, IServiceProvider serviceProvider) : base(dbSessionBag, connection, serviceProvider) { }
 
         public new ISqlServerDbSession BeginTransaction()
         {

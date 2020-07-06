@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"name": "test",
+			"path": "test"
+		},
+		{
+			"name": "src",
+			"path": "src"
+		},
+		{
+			"name": "example",
+			"path": "example"
+		},
+		{
+			"name": "KnstArchitecture",
+			"path": "."
+		}
+	],
+	"settings": {}
+}
