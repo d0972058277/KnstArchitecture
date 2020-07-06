@@ -8,6 +8,16 @@ namespace KnstArchitecture.Test.Repos
     public class XunitSqlRepo : XunitKnstArchSql
     {
         [Fact]
+        public void DbSession()
+        {
+            var uow = ServiceProvider.GetRequiredService<ISqlUnitOfWork>();
+            var repo = ServiceProvider.GetRequiredService<ITestSqlRepo>();
+            var defaultSession = uow.GetDefaultDbSession();
+
+            Assert.Equal(defaultSession, repo.DbSession);
+        }
+
+        [Fact]
         public void Connection()
         {
             var uow = ServiceProvider.GetRequiredService<ISqlUnitOfWork>();
