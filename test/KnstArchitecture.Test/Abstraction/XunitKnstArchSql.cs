@@ -31,8 +31,8 @@ namespace KnstArchitecture.Test.Abstraction
         }
     }
 
-    public interface ITestMySqlRepo : IRepo { }
-    public class TestMySqlRepo : SqlRepo, ITestMySqlRepo
+    public interface ITestSqlRepo : ISqlRepo { }
+    public class TestMySqlRepo : SqlRepo, ITestSqlRepo
     {
         public TestMySqlRepo(ISqlUnitOfWork unitOfWork) : base(unitOfWork) { }
     }

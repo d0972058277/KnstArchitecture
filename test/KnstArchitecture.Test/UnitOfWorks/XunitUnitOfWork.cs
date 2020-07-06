@@ -9,17 +9,6 @@ namespace KnstArchitecture.Test.UnitOfWorks
     public class XunitUnitOfWork : XunitKnstArch
     {
         [Fact]
-        public void GetDefaultDbSession()
-        {
-            var uow = ServiceProvider.GetRequiredService<ITestUnitOfWork>();
-            var bag = ServiceProvider.GetRequiredService<IDbSessionBag>();
-            var defaultSession = uow.GetDefaultDbSession();
-
-            Assert.Equal(1, bag.Count);
-            Assert.NotNull(defaultSession);
-        }
-
-        [Fact]
         public void CreateDbSession()
         {
             var uow = ServiceProvider.GetRequiredService<ITestUnitOfWork>();
@@ -30,6 +19,17 @@ namespace KnstArchitecture.Test.UnitOfWorks
             Assert.NotNull(newSession);
             Assert.NotEqual(defaultSession, newSession);
             Assert.Equal(2, bag.Count);
+        }
+
+        [Fact]
+        public void GetDefaultDbSession()
+        {
+            var uow = ServiceProvider.GetRequiredService<ITestUnitOfWork>();
+            var bag = ServiceProvider.GetRequiredService<IDbSessionBag>();
+            var defaultSession = uow.GetDefaultDbSession();
+
+            Assert.Equal(1, bag.Count);
+            Assert.NotNull(defaultSession);
         }
 
         [Fact]
