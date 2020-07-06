@@ -49,10 +49,10 @@ namespace KnstArchitecture.EF.Test
         public TestEFUnitOfWork(IServiceProvider serviceProvider, ITestEFDbSession sqlDbSession) : base(serviceProvider, sqlDbSession) { }
     }
 
-    public interface ITestEFRepo : ISqlRepo { }
+    public interface ITestEFRepo : IEFCoreRepo { }
     public class TestEFRepo : EFCoreRepo, ITestEFRepo
     {
-        public TestEFRepo(ISqlUnitOfWork unitOfWork) : base(unitOfWork) { }
+        public TestEFRepo(IEFCoreUnitOfWork unitOfWork) : base(unitOfWork) { }
     }
 
     public class TestContext : KnstDbContext

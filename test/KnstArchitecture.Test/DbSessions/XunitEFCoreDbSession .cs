@@ -1,8 +1,9 @@
 using System.Transactions;
+using KnstArchitecture.EF.Test;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
-namespace KnstArchitecture.EF.Test
+namespace KnstArchitecture.Test.DbSessions
 {
     public class XunitEFCoreDbSession : XunitKnstArchEF
     {

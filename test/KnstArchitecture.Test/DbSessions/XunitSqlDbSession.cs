@@ -1,10 +1,11 @@
 using System.Data;
 using System.Transactions;
 using KnstArchitecture.DbSessions;
+using KnstArchitecture.Sql.Test;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
-namespace KnstArchitecture.Sql.Test
+namespace KnstArchitecture.Test.DbSessions
 {
     public class XunitSqlDbSession : XunitKnstArchSql
     {

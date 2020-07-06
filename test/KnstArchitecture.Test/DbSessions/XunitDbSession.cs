@@ -2,7 +2,7 @@ using System.Transactions;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
-namespace KnstArchitecture.Test
+namespace KnstArchitecture.Test.DbSessions
 {
     public class XunitDbSession : XunitKnstArch
     {

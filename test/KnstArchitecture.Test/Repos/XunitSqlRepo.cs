@@ -1,8 +1,9 @@
+using KnstArchitecture.Sql.Test;
 using KnstArchitecture.UnitOfWorks;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
-namespace KnstArchitecture.Sql.Test
+namespace KnstArchitecture.Test.Repos
 {
     public class XunitSqlRepo : XunitKnstArchSql
     {
