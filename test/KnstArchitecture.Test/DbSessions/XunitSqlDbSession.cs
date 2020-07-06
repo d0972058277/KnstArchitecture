@@ -1,4 +1,3 @@
-using System;
 using System.Data;
 using System.Transactions;
 using KnstArchitecture.DbSessions;

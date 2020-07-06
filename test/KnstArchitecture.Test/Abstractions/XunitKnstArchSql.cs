@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using KnstArchitecture.Repos;
+using KnstArchitecture.Test;
 using KnstArchitecture.UnitOfWorks;
 using Microsoft.Extensions.DependencyInjection;
 

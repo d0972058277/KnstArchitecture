@@ -2,7 +2,7 @@ using System.Data;
 using System.Data.Common;
 using Moq;
 
-namespace KnstArchitecture.EF.Test
+namespace KnstArchitecture.Test
 {
     public static class DbConnectionMoq
     {

@@ -3,7 +3,7 @@ using KnstArchitecture.DbSessions;
 using KnstArchitecture.Repos;
 using KnstArchitecture.UnitOfWorks;
 using Microsoft.Extensions.DependencyInjection;
-using Xunit;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace KnstArchitecture.Test
 {
@@ -15,7 +15,8 @@ namespace KnstArchitecture.Test
         public XunitKnstArch()
         {
             var services = new ServiceCollection();
-            services.TryAddKnstArchitecture();
+            services.TryAddTransient<ITestRepo, TestRepo>();
+            services.TryAddKnstArchitectureDbSessionBag();
             services.AddTransient<ITestDbSession, TestDbSession>();
             services.AddScoped<ITestUnitOfWork, TestUnitOfWork>();
 

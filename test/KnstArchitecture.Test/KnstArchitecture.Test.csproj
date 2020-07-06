@@ -13,5 +13,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\KnstArchitecture\KnstArchitecture.csproj" />
+    <ProjectReference Include="..\..\src\KnstArchitecture.Sql\KnstArchitecture.Sql.csproj" />
+    <ProjectReference Include="..\..\src\KnstArchitecture.EF\KnstArchitecture.EF.csproj" />
   </ItemGroup>
 </Project>

@@ -3,6 +3,7 @@ using System.Data;
 using KnstArchitecture.DbSessions;
 using KnstArchitecture.EF.DbContexts;
 using KnstArchitecture.Repos;
+using KnstArchitecture.Test;
 using KnstArchitecture.UnitOfWorks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
