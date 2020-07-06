@@ -1,15 +1,11 @@
-using System;
 using System.Transactions;
-using KnstArchitecture.Test.Abstraction;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
-namespace KnstArchitecture.Test
+namespace KnstArchitecture.Test.DbSessions
 {
     public class XunitDbSession : XunitKnstArch
     {
-        public XunitDbSession(StartupFixture startupFixture) : base(startupFixture) { }
-
         [Fact]
         public void BeginTransaction()
         {

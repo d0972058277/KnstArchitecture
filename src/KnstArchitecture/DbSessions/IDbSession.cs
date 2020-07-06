@@ -9,12 +9,4 @@ namespace KnstArchitecture.DbSessions
         void Rollback();
         bool IsTransaction { get; }
     }
-
-    public interface IDbSession<TConnection, TTransaction> : IDbSession
-    {
-        TConnection GetConnection();
-        TTransaction GetTransaction();
-        T GetConnection<T>() where T : TConnection;
-        T GetTransaction<T>() where T : TTransaction;
-    }
 }
