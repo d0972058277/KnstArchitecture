@@ -1,13 +1,10 @@
 using System;
 using System.Data;
-using KnstArchitecture.DbSessions;
 using KnstArchitecture.Repos;
-using KnstArchitecture.Test.Mocks;
 using KnstArchitecture.UnitOfWorks;
 using Microsoft.Extensions.DependencyInjection;
-using Xunit;
 
-namespace KnstArchitecture.Test.Abstraction
+namespace KnstArchitecture.Sql.Test
 {
     public abstract class XunitKnstArchSql : IDisposable
     {

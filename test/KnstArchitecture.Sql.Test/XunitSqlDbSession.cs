@@ -2,12 +2,10 @@ using System;
 using System.Data;
 using System.Transactions;
 using KnstArchitecture.DbSessions;
-using KnstArchitecture.Test.Abstraction;
 using Microsoft.Extensions.DependencyInjection;
-using MySql.Data.MySqlClient;
 using Xunit;
 
-namespace KnstArchitecture.Test.DbSessions
+namespace KnstArchitecture.Sql.Test
 {
     public class XunitSqlDbSession : XunitKnstArchSql
     {
@@ -53,8 +51,6 @@ namespace KnstArchitecture.Test.DbSessions
             var connection = session.GetConnection<IDbConnection>();
 
             Assert.NotNull(connection);
-
-            Assert.Throws<InvalidCastException>(() => session.GetConnection<MySqlConnection>());
         }
 
         [Fact]
@@ -69,8 +65,6 @@ namespace KnstArchitecture.Test.DbSessions
             transaction = session.GetTransaction<IDbTransaction>();
 
             Assert.NotNull(transaction);
-
-            Assert.Throws<InvalidCastException>(() => session.GetTransaction<MySqlTransaction>());
         }
     }
 }

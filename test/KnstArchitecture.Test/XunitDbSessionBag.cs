@@ -1,9 +1,8 @@
 using KnstArchitecture.DbSessions;
-using KnstArchitecture.Test.Abstraction;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
-namespace KnstArchitecture.Test.DbSessions
+namespace KnstArchitecture.Test
 {
     public class XunitDbSessionBag : XunitKnstArch
     {

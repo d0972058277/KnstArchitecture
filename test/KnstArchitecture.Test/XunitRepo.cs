@@ -1,8 +1,7 @@
-using KnstArchitecture.Test.Abstraction;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
-namespace KnstArchitecture.Test.Repos
+namespace KnstArchitecture.Test
 {
     public class XunitRepo : XunitKnstArch
     {

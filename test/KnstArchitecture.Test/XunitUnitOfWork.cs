@@ -1,10 +1,8 @@
-using System.Transactions;
 using KnstArchitecture.DbSessions;
-using KnstArchitecture.Test.Abstraction;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
-namespace KnstArchitecture.Test.UnitOfWorks
+namespace KnstArchitecture.Test
 {
     public class XunitUnitOfWork : XunitKnstArch
     {

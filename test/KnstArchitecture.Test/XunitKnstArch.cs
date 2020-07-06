@@ -5,7 +5,7 @@ using KnstArchitecture.UnitOfWorks;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
-namespace KnstArchitecture.Test.Abstraction
+namespace KnstArchitecture.Test
 {
     public abstract class XunitKnstArch : IDisposable
     {
