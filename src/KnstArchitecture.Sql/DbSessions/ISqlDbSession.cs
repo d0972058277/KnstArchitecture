@@ -4,7 +4,6 @@ namespace KnstArchitecture.DbSessions
 {
     public interface ISqlDbSession : IDbSession
     {
-        string DataSource { get; }
         string Database { get; }
         string ConnectionString { get; }
         ConnectionState State { get; }

@@ -13,8 +13,6 @@ namespace KnstArchitecture.DbSessions
             _connection = connection;
         }
 
-        public string DataSource => (_connection as DbConnection).DataSource;
-
         public string Database => (_connection as DbConnection).Database;
 
         public string ConnectionString => (_connection as DbConnection).ConnectionString;
