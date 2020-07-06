@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data;
+using System.Data.Common;
 using KnstArchitecture.DbSessions;
 using KnstArchitecture.Queries;
 using KnstArchitecture.UnitOfWorks;
@@ -12,7 +14,31 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             services.TryAddKnstArchitecture();
             services.TryAddKnstDbContexts();
-            services.AddTransient<ISqliteDbSession, SqliteDbSession>();
+            services.AddTransient<ISqliteDbSession, SqliteDbSession>(sp =>
+            {
+                var bag = sp.GetRequiredService<IDbSessionBag>();
+
+                var idbconn = sp.GetService<IDbConnection>();
+                var dbconn = sp.GetService<DbConnection>();
+                var providerconn = sp.GetService<SqliteConnection>();
+
+                if (!(providerconn is null))
+                {
+                    return new SqliteDbSession(bag, providerconn, sp);
+                }
+
+                if (!(dbconn is null) && dbconn is SqliteConnection)
+                {
+                    return new SqliteDbSession(bag, dbconn, sp);
+                }
+
+                if (!(idbconn is null) && idbconn is SqliteConnection)
+                {
+                    return new SqliteDbSession(bag, idbconn, sp);
+                }
+
+                throw new InvalidOperationException($"The type of {nameof(SqliteConnection)} service is not registered.");
+            });
             services.AddScoped<ISqliteUnitOfWork, SqliteUnitOfWork>();
 
             services.AddTransient<IEFCoreDbSession>(sp => sp.GetRequiredService<ISqliteDbSession>());
