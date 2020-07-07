@@ -30,8 +30,8 @@ namespace KnstArchitecture.Sql.Test
     }
 
     public interface ITestSqlRepo : ISqlRepo { }
-    public class TestMySqlRepo : SqlRepo, ITestSqlRepo
+    public class TestSqlRepo : SqlRepo, ITestSqlRepo
     {
-        public TestMySqlRepo(ISqlUnitOfWork unitOfWork) : base(unitOfWork) { }
+        public TestSqlRepo(ISqlUnitOfWork unitOfWork) : base(unitOfWork) { }
     }
 }
