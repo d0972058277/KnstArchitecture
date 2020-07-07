@@ -55,6 +55,12 @@ namespace KnstArchitecture.EF.Test
         public TestEFRepo(IEFCoreUnitOfWork unitOfWork) : base(unitOfWork) { }
     }
 
+    public interface ITestEFCtxRepo : IEFCoreRepo<TestContext> { }
+    public class TestEFCtxRepo : EFCoreRepo<TestContext>, ITestEFCtxRepo
+    {
+        public TestEFCtxRepo(IEFCoreUnitOfWork unitOfWork) : base(unitOfWork) { }
+    }
+
     public class TestContext : KnstDbContext
     {
         public bool IsSaveChange { get; private set; } = false;
