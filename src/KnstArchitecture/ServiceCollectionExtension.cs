@@ -38,7 +38,6 @@ namespace Microsoft.Extensions.DependencyInjection
                 {
                     services.Add(new ServiceDescriptor(@interface, sp => sp.GetRequiredService(type), lifetime));
                 }
-
             }
             return services;
         }
