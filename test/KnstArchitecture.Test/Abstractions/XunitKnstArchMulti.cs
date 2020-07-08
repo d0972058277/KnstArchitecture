@@ -5,18 +5,19 @@ using KnstArchitecture.Test;
 using KnstArchitecture.UnitOfWorks;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace KnstArchitecture.Sql.Test
+namespace KnstArchitecture.Multi.Test
 {
-    public abstract class XunitKnstArchSql : IDisposable
+    public class XunitKnstArchMulti : IDisposable
     {
         public IServiceProvider ServiceProvider;
         public IServiceScope ServiceScope;
 
-        public XunitKnstArchSql()
+        public XunitKnstArchMulti()
         {
             var services = new ServiceCollection();
-            services.AddKnstArchitectureSql();
             services.AddTransient<IDbConnection>(sp => DbConnectionMoq.GetMemorySqlite());
+            services.AddTransient<IDbConnection>(sp => DbConnectionMoq.GetMemorySqlite());
+            services.AddKnstArchitectureMultiSql();
 
             var serviceProvider = services.BuildServiceProvider();
             ServiceScope = serviceProvider.CreateScope();
@@ -25,13 +26,13 @@ namespace KnstArchitecture.Sql.Test
 
         public void Dispose()
         {
-            ServiceScope.Dispose();
+            ServiceScope?.Dispose();
         }
     }
 
-    public interface ITestSqlRepo : ISqlRepo { }
-    public class TestSqlRepo : SqlRepo, ITestSqlRepo
+    public interface ITestMultiSqlRepo : IMultiSqlRepo { }
+    public class TestSqlRepo : MultiSqlRepo, ITestMultiSqlRepo
     {
-        public TestSqlRepo(ISqlUnitOfWork unitOfWork) : base(unitOfWork) { }
+        public TestSqlRepo(IMultiSqlUnitOfWork unitOfWork) : base(unitOfWork) { }
     }
 }

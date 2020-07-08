@@ -334,4 +334,7 @@ ASALocalRun/
 *.Development.json
 
 #vscode
-.vscode/
+#.vscode/
+
+**/lcov.info
+**/coverage.json

@@ -17,6 +17,8 @@ namespace KnstArchitecture.Test.DbSessions
 
             Assert.Equal(session, transaction);
             Assert.True(transaction.IsTransaction);
+            Assert.Equal(ConnectionState.Open, transaction.GetTransaction().Connection.State);
+            Assert.NotNull(transaction.GetTransaction());
 
             var exception = Assert.Throws<TransactionException>(() => { transaction.BeginTransaction(); });
         }
@@ -65,6 +67,56 @@ namespace KnstArchitecture.Test.DbSessions
             transaction = session.GetTransaction<IDbTransaction>();
 
             Assert.NotNull(transaction);
+        }
+
+        [Fact]
+        public void Commit()
+        {
+            var session = ServiceProvider.GetRequiredService<ISqlDbSession>();
+            var transaction = session.BeginTransaction();
+
+            transaction.Commit();
+            Assert.False(transaction.IsTransaction);
+            Assert.Equal(ConnectionState.Closed, transaction.GetConnection().State);
+            Assert.Null(transaction.GetTransaction());
+
+            var exception = Assert.Throws<TransactionException>(() => { transaction.Commit(); });
+        }
+
+        [Fact]
+        public void Rollback()
+        {
+
+            var session = ServiceProvider.GetRequiredService<ISqlDbSession>();
+            var transaction = session.BeginTransaction();
+
+            transaction.Rollback();
+            Assert.False(transaction.IsTransaction);
+            Assert.Equal(ConnectionState.Closed, transaction.GetConnection().State);
+            Assert.Null(transaction.GetTransaction());
+
+            var exception = Assert.Throws<TransactionException>(() => { transaction.Rollback(); });
+        }
+
+        [Fact]
+        public void Database()
+        {
+            var session = ServiceProvider.GetRequiredService<ISqlDbSession>();
+            Assert.Equal("main", session.Database);
+        }
+
+        [Fact]
+        public void ConnectionString()
+        {
+            var session = ServiceProvider.GetRequiredService<ISqlDbSession>();
+            Assert.Equal("Filename=:memory:", session.ConnectionString);
+        }
+
+        [Fact]
+        public void State()
+        {
+            var session = ServiceProvider.GetRequiredService<ISqlDbSession>();
+            Assert.Equal(ConnectionState.Closed, session.State);
         }
     }
 }

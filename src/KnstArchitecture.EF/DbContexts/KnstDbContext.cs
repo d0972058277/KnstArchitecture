@@ -4,6 +4,7 @@ using System.Data.Common;
 using KnstArchitecture.DbSessions;
 using KnstArchitecture.UnitOfWorks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace KnstArchitecture.EF.DbContexts
 {
@@ -26,6 +27,9 @@ namespace KnstArchitecture.EF.DbContexts
             get => _dbSession;
             set
             {
+                // dbSession 相同直接 return
+                if (_dbSession == value) return;
+                // dbSession 不同判斷有無設定過，有設定過則拋出 Exception
                 if (!_defaultDbSessionIsUsed)
                 {
                     throw new InvalidOperationException("DbSession 不能被設定兩次");
@@ -53,6 +57,11 @@ namespace KnstArchitecture.EF.DbContexts
         {
             if (Database.CurrentTransaction != null && dbTransaction != null)
             {
+                // 假如 transaction 相同，則不做事，其餘拋出 Exception
+                if ((Database.CurrentTransaction as IInfrastructure<IDbTransaction>).Instance == dbTransaction)
+                {
+                    return;
+                }
                 throw new InvalidOperationException("已經存在 transaction ，無法再設定 transaction");
             }
 

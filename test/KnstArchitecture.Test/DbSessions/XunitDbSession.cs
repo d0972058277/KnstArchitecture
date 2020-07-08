@@ -1,4 +1,5 @@
 using System.Transactions;
+using KnstArchitecture.Base.Test;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 

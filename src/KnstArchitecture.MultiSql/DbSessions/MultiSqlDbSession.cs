@@ -8,6 +8,9 @@ namespace KnstArchitecture.DbSessions
     {
         protected Func<List<ISqlDbSession>, ISqlDbSession> _filter;
         public RichSqlDbSession SqlDbSessions { get; private set; }
+
+        public Func<List<ISqlDbSession>, ISqlDbSession> DefaultFilter { get => this._filter; }
+
         public ISqlDbSession this [int index] => SqlDbSessions.ElementAt(index);
 
         public MultiSqlDbSession(IDbSessionBag dbSessionBag, RichSqlDbSession sqlDbSessions) : base(dbSessionBag)
@@ -16,7 +19,20 @@ namespace KnstArchitecture.DbSessions
         }
 
         /// <summary>
-        /// IMultiSqlDbSession ©³¤U©Ò¦³ SqlDbSession ¥ş³¡°õ¦æ Commit
+        /// IMultiSqlDbSession åº•ä¸‹æ‰€æœ‰ SqlDbSession å…¨éƒ¨åŸ·è¡Œ BeginTransaction
+        /// </summary>
+        public override IDbSession BeginTransaction()
+        {
+            base.BeginTransaction();
+            foreach (var dbSession in SqlDbSessions)
+            {
+                dbSession.BeginTransaction();
+            }
+            return this;
+        }
+
+        /// <summary>
+        /// IMultiSqlDbSession åº•ä¸‹æ‰€æœ‰ SqlDbSession å…¨éƒ¨åŸ·è¡Œ Commit
         /// </summary>
         public override void Commit()
         {
@@ -29,7 +45,7 @@ namespace KnstArchitecture.DbSessions
         }
 
         /// <summary>
-        /// IMultiSqlDbSession ©³¤U©Ò¦³ SqlDbSession ¥ş³¡°õ¦æ Rollback
+        /// IMultiSqlDbSession åº•ä¸‹æ‰€æœ‰ SqlDbSession å…¨éƒ¨åŸ·è¡Œ Rollback
         /// </summary>
         public override void Rollback()
         {
@@ -41,24 +57,13 @@ namespace KnstArchitecture.DbSessions
             }
         }
 
-        /// <summary>
-        /// IMultiSqlDbSession ©³¤U©Ò¦³ SqlDbSession ¥ş³¡°õ¦æ BeginTransaction
-        /// </summary>
-        public new IMultiSqlDbSession BeginTransaction()
-        {
-            base.BeginTransaction();
-            foreach (var dbSession in SqlDbSessions)
-            {
-                dbSession.BeginTransaction();
-            }
-            return this;
-        }
+        IMultiSqlDbSession IMultiSqlDbSession.BeginTransaction() => this.BeginTransaction() as IMultiSqlDbSession;
 
         public ISqlDbSession First() => SqlDbSessions.First();
 
         public ISqlDbSession Last() => SqlDbSessions.Last();
 
-        public void ClearDefaultFilter() => _filter = null;
+        public void RemoveDefaultFilter() => _filter = null;
 
         public void SetDefaultFilter(Func<List<ISqlDbSession>, ISqlDbSession> filter) => _filter = filter;
 
@@ -76,13 +81,13 @@ namespace KnstArchitecture.DbSessions
         {
             if (_disposed) return;
 
-            // ÄÀ©ñ«D°UºŞ¸ê·½
+            // é‡‹æ”¾éè¨—ç®¡è³‡æº
             foreach (var session in SqlDbSessions)
             {
                 session.Dispose();
             }
 
-            // ÄÀ©ñ°UºŞ¸ê·½
+            // é‡‹æ”¾è¨—ç®¡è³‡æº
             if (disposing)
             {
                 SqlDbSessions.Clear();
