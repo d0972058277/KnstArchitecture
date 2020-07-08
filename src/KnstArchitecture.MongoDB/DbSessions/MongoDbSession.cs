@@ -11,6 +11,18 @@ namespace KnstArchitecture.DbSessions
             _mongoClient = mongoClient;
         }
 
+        public override IDbSession BeginTransaction()
+        {
+            base.BeginTransaction();
+            if (_clientSessionHandle != null)
+            {
+                throw new MongoException("Transaction has started.");
+            }
+            StartSession();
+            _clientSessionHandle.StartTransaction();
+            return this;
+        }
+
         public override void Commit()
         {
             base.Commit();
@@ -52,16 +64,6 @@ namespace KnstArchitecture.DbSessions
             base.Dispose(disposing);
         }
 
-        public new IMongoDbSession BeginTransaction()
-        {
-            base.BeginTransaction();
-            if (_clientSessionHandle != null)
-            {
-                throw new MongoException("Transaction has started.");
-            }
-            StartSession();
-            _clientSessionHandle.StartTransaction();
-            return this;
-        }
+        IMongoDbSession IMongoDbSession.BeginTransaction() => this.BeginTransaction() as IMongoDbSession;
     }
 }

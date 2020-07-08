@@ -19,6 +19,19 @@ namespace KnstArchitecture.DbSessions
         }
 
         /// <summary>
+        /// IMultiSqlDbSession 底下所有 SqlDbSession 全部執行 BeginTransaction
+        /// </summary>
+        public override IDbSession BeginTransaction()
+        {
+            base.BeginTransaction();
+            foreach (var dbSession in SqlDbSessions)
+            {
+                dbSession.BeginTransaction();
+            }
+            return this;
+        }
+
+        /// <summary>
         /// IMultiSqlDbSession 底下所有 SqlDbSession 全部執行 Commit
         /// </summary>
         public override void Commit()
@@ -44,18 +57,7 @@ namespace KnstArchitecture.DbSessions
             }
         }
 
-        /// <summary>
-        /// IMultiSqlDbSession 底下所有 SqlDbSession 全部執行 BeginTransaction
-        /// </summary>
-        public new IMultiSqlDbSession BeginTransaction()
-        {
-            base.BeginTransaction();
-            foreach (var dbSession in SqlDbSessions)
-            {
-                dbSession.BeginTransaction();
-            }
-            return this;
-        }
+        IMultiSqlDbSession IMultiSqlDbSession.BeginTransaction() => this.BeginTransaction() as IMultiSqlDbSession;
 
         public ISqlDbSession First() => SqlDbSessions.First();
 

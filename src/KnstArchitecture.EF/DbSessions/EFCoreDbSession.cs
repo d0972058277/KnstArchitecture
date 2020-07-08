@@ -35,6 +35,13 @@ namespace KnstArchitecture.DbSessions
             _dbContexts.Clear();
         }
 
+        public override IDbSession BeginTransaction()
+        {
+            base.BeginTransaction();
+            NotifyObserversUseTransaction();
+            return this;
+        }
+
         public override void Commit()
         {
             base.Commit();
@@ -96,12 +103,7 @@ namespace KnstArchitecture.DbSessions
             base.Dispose(disposing);
         }
 
-        public new IEFCoreDbSession BeginTransaction()
-        {
-            base.BeginTransaction();
-            NotifyObserversUseTransaction();
-            return this;
-        }
+        IEFCoreDbSession IEFCoreDbSession.BeginTransaction() => this.BeginTransaction() as IEFCoreDbSession;
 
         public void NotifyObserversUseTransaction()
         {
