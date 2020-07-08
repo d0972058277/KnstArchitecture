@@ -4,17 +4,18 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
-    <PackageReference Include="xunit" Version="2.4.0" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
-    <PackageReference Include="coverlet.collector" Version="1.2.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.5" />
-    <PackageReference Include="Moq" Version="4.14.5" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0"/>
+    <PackageReference Include="xunit" Version="2.4.0"/>
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0"/>
+    <PackageReference Include="coverlet.collector" Version="1.2.0"/>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.5"/>
+    <PackageReference Include="Moq" Version="4.14.5"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.4"/>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\KnstArchitecture\KnstArchitecture.csproj" />
-    <ProjectReference Include="..\..\src\KnstArchitecture.Sql\KnstArchitecture.Sql.csproj" />
-    <ProjectReference Include="..\..\src\KnstArchitecture.EF\KnstArchitecture.EF.csproj" />
-    <ProjectReference Include="..\..\src\KnstArchitecture.Sqlite\KnstArchitecture.Sqlite.csproj" />
+    <ProjectReference Include="..\..\src\KnstArchitecture\KnstArchitecture.csproj"/>
+    <ProjectReference Include="..\..\src\KnstArchitecture.Sql\KnstArchitecture.Sql.csproj"/>
+    <ProjectReference Include="..\..\src\KnstArchitecture.EF\KnstArchitecture.EF.csproj"/>
+    <ProjectReference Include="..\..\src\KnstArchitecture.MultiSql\KnstArchitecture.MultiSql.csproj"/>
   </ItemGroup>
 </Project>
