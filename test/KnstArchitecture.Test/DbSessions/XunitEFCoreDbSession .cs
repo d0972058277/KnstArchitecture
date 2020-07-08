@@ -1,6 +1,7 @@
 using System.Data;
 using System.Transactions;
 using KnstArchitecture.EF.Test;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
@@ -41,6 +42,18 @@ namespace KnstArchitecture.Test.DbSessions
 
             Assert.NotNull(dbContext);
             Assert.Equal(session, dbContext.DbSession);
+        }
+
+        [Fact]
+        public void GetCtxWithTransaction()
+        {
+            var session = ServiceProvider.GetRequiredService<ITestEFDbSession>();
+            session.BeginTransaction();
+            var dbContext = session.GetCtx<TestContext>();
+
+            Assert.NotNull(dbContext);
+            Assert.Equal(session, dbContext.DbSession);
+            Assert.Equal(session.GetTransaction(), (dbContext.Database.CurrentTransaction as IInfrastructure<IDbTransaction>).Instance);
         }
 
         [Fact]

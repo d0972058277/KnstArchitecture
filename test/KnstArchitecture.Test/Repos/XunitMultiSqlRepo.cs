@@ -73,71 +73,72 @@ namespace KnstArchitecture.Test.Repos
         [Fact]
         public void DefaultFilter()
         {
-            //Given
+            var uow = ServiceProvider.GetRequiredService<IMultiSqlUnitOfWork>();
+            var repo = ServiceProvider.GetRequiredService<ITestMultiSqlRepo>();
+            repo.SetDefaultFilter(sessions => sessions.First());
 
-            //When
-
-            //Then
+            Assert.Equal(uow.GetDefaultDbSession().DefaultFilter, repo.DefaultFilter);
         }
 
         [Fact]
         public void RemoveDefaultFilter()
         {
-            //Given
+            var uow = ServiceProvider.GetRequiredService<IMultiSqlUnitOfWork>();
+            var repo = ServiceProvider.GetRequiredService<ITestMultiSqlRepo>();
+            repo.SetDefaultFilter(sessions => sessions.First());
+            repo.RemoveDefaultFilter();
 
-            //When
-
-            //Then
+            Assert.Null(repo.DefaultFilter);
+            Assert.Null(uow.GetDefaultDbSession().DefaultFilter);
         }
 
         [Fact]
         public void SetDefaultFilter()
         {
-            //Given
+            var uow = ServiceProvider.GetRequiredService<IMultiSqlUnitOfWork>();
+            var repo = ServiceProvider.GetRequiredService<ITestMultiSqlRepo>();
+            repo.SetDefaultFilter(sessions => sessions.First());
 
-            //When
-
-            //Then
+            Assert.NotNull(repo.DefaultFilter);
+            Assert.Equal(uow.GetDefaultDbSession().DefaultFilter, repo.DefaultFilter);
         }
 
         [Fact]
         public void Default()
         {
-            //Given
+            var uow = ServiceProvider.GetRequiredService<IMultiSqlUnitOfWork>();
+            var repo = ServiceProvider.GetRequiredService<ITestMultiSqlRepo>();
+            repo.SetDefaultFilter(sessions => sessions.First());
 
-            //When
-
-            //Then
+            Assert.Equal(uow.GetDefaultDbSession().Default(), repo.Default());
         }
 
         [Fact]
         public void First()
         {
-            //Given
+            var uow = ServiceProvider.GetRequiredService<IMultiSqlUnitOfWork>();
+            var repo = ServiceProvider.GetRequiredService<ITestMultiSqlRepo>();
 
-            //When
-
-            //Then
+            Assert.Equal(uow.GetDefaultDbSession().First(), repo.First());
         }
 
         [Fact]
         public void Last()
         {
-            //Given
+            var uow = ServiceProvider.GetRequiredService<IMultiSqlUnitOfWork>();
+            var repo = ServiceProvider.GetRequiredService<ITestMultiSqlRepo>();
 
-            //When
-
-            //Then
+            Assert.Equal(uow.GetDefaultDbSession().Last(), repo.Last());
         }
 
         [Fact]
         public void Index()
         {
-            //Given
+            var uow = ServiceProvider.GetRequiredService<IMultiSqlUnitOfWork>();
+            var repo = ServiceProvider.GetRequiredService<ITestMultiSqlRepo>();
+            repo.SetDefaultFilter(sessions => sessions.First());
 
-            //When
-
-            //Then
+            Assert.Equal(uow.GetDefaultDbSession() [0], repo[0]);
         }
     }
 }
