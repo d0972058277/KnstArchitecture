@@ -97,5 +97,26 @@ namespace KnstArchitecture.Test.DbSessions
 
             var exception = Assert.Throws<TransactionException>(() => { transaction.Rollback(); });
         }
+
+        [Fact]
+        public void Database()
+        {
+            var session = ServiceProvider.GetRequiredService<ISqlDbSession>();
+            Assert.Equal("main", session.Database);
+        }
+
+        [Fact]
+        public void ConnectionString()
+        {
+            var session = ServiceProvider.GetRequiredService<ISqlDbSession>();
+            Assert.Equal("Filename=:memory:", session.ConnectionString);
+        }
+
+        [Fact]
+        public void State()
+        {
+            var session = ServiceProvider.GetRequiredService<ISqlDbSession>();
+            Assert.Equal(ConnectionState.Closed, session.State);
+        }
     }
 }
