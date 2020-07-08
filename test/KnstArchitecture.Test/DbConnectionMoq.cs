@@ -1,5 +1,6 @@
 using System.Data;
 using System.Data.Common;
+using Microsoft.Data.Sqlite;
 using Moq;
 
 namespace KnstArchitecture.Test
@@ -17,6 +18,12 @@ namespace KnstArchitecture.Test
             connectionMock.Setup(c => c.BeginTransaction()).Returns(transactionMock.Object);
 
             return connectionMock.Object;
+        }
+
+        public static IDbConnection GetMemorySqlite()
+        {
+            var connection = new SqliteConnection("Filename=:memory:");
+            return connection;
         }
     }
 }

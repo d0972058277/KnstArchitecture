@@ -7,10 +7,6 @@ namespace KnstArchitecture.DbSessions
     {
         public SqliteDbSession(IDbSessionBag dbSessionBag, IDbConnection connection, IServiceProvider serviceProvider) : base(dbSessionBag, connection, serviceProvider) { }
 
-        public new ISqliteDbSession BeginTransaction()
-        {
-            base.BeginTransaction();
-            return this;
-        }
+        ISqliteDbSession ISqliteDbSession.BeginTransaction() => base.BeginTransaction() as ISqliteDbSession;
     }
 }

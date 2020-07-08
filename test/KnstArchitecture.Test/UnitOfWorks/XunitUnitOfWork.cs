@@ -1,3 +1,4 @@
+using KnstArchitecture.Base.Test;
 using KnstArchitecture.DbSessions;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;

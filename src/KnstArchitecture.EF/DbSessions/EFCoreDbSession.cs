@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.Common;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace KnstArchitecture.DbSessions
         private readonly IServiceProvider _serviceProvider;
         private readonly IServiceScope _serviceScope;
         private HashSet<KnstDbContext> _dbContexts;
+
+        public IEnumerable<KnstDbContext> Observers { get => _dbContexts.ToList().AsReadOnly(); }
 
         protected EFCoreDbSession(IDbSessionBag dbSessionBag, IDbConnection connection, IServiceProvider serviceProvider) : base(dbSessionBag, connection)
         {
@@ -32,11 +35,17 @@ namespace KnstArchitecture.DbSessions
             _dbContexts.Clear();
         }
 
+        public override IDbSession BeginTransaction()
+        {
+            base.BeginTransaction();
+            NotifyObserversUseTransaction();
+            return this;
+        }
+
         public override void Commit()
         {
-            SaveChanges();
             base.Commit();
-            NotifyObserverUseTransaction();
+            NotifyObserversUseTransaction();
         }
 
         public virtual TContext GetCtx<TContext>() where TContext : KnstDbContext
@@ -66,7 +75,7 @@ namespace KnstArchitecture.DbSessions
         public override void Rollback()
         {
             base.Rollback();
-            NotifyObserverUseTransaction();
+            NotifyObserversUseTransaction();
         }
 
         public void SaveChanges()
@@ -94,14 +103,9 @@ namespace KnstArchitecture.DbSessions
             base.Dispose(disposing);
         }
 
-        public new IEFCoreDbSession BeginTransaction()
-        {
-            base.BeginTransaction();
-            NotifyObserverUseTransaction();
-            return this;
-        }
+        IEFCoreDbSession IEFCoreDbSession.BeginTransaction() => this.BeginTransaction() as IEFCoreDbSession;
 
-        public void NotifyObserverUseTransaction()
+        public void NotifyObserversUseTransaction()
         {
             foreach (var observer in _dbContexts)
             {

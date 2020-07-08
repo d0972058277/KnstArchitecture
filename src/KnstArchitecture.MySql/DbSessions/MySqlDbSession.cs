@@ -1,5 +1,5 @@
-using System.Data;
 using System;
+using System.Data;
 
 namespace KnstArchitecture.DbSessions
 {
@@ -7,10 +7,6 @@ namespace KnstArchitecture.DbSessions
     {
         public MySqlDbSession(IDbSessionBag dbSessionBag, IDbConnection connection, IServiceProvider serviceProvider) : base(dbSessionBag, connection, serviceProvider) { }
 
-        public new IMySqlDbSession BeginTransaction()
-        {
-            base.BeginTransaction();
-            return this;
-        }
+        IMySqlDbSession IMySqlDbSession.BeginTransaction() => base.BeginTransaction() as IMySqlDbSession;
     }
 }

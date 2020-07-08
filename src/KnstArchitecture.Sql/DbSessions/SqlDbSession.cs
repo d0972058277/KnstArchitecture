@@ -32,6 +32,14 @@ namespace KnstArchitecture.DbSessions
             base.Dispose(disposing);
         }
 
+        public override IDbSession BeginTransaction()
+        {
+            base.BeginTransaction();
+            _connection.Open();
+            _transaction = _connection.BeginTransaction();
+            return this;
+        }
+
         public override void Commit()
         {
             base.Commit();
@@ -50,13 +58,7 @@ namespace KnstArchitecture.DbSessions
             _connection.Close();
         }
 
-        public new ISqlDbSession BeginTransaction()
-        {
-            base.BeginTransaction();
-            _connection.Open();
-            _transaction = _connection.BeginTransaction();
-            return this;
-        }
+        ISqlDbSession ISqlDbSession.BeginTransaction() => this.BeginTransaction() as ISqlDbSession;
 
         public IDbConnection GetConnection() => _connection;
 
