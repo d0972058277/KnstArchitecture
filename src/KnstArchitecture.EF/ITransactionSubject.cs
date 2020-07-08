@@ -5,9 +5,9 @@ namespace KnstArchitecture.EF
 {
     public interface ITransactionSubject
     {
-        ReadOnlyCollection<KnstDbContext> ReadonlyKnstDbContext { get; }
+        ReadOnlyCollection<KnstDbContext> Observers { get; }
         void Attach(KnstDbContext observer);
         void Detach(KnstDbContext observer);
-        void NotifyObserverUseTransaction();
+        void NotifyObserversUseTransaction();
     }
 }

@@ -17,7 +17,7 @@ namespace KnstArchitecture.DbSessions
         private readonly IServiceScope _serviceScope;
         private HashSet<KnstDbContext> _dbContexts;
 
-        public ReadOnlyCollection<KnstDbContext> ReadonlyKnstDbContext { get => _dbContexts.ToList().AsReadOnly(); }
+        public ReadOnlyCollection<KnstDbContext> Observers { get => _dbContexts.ToList().AsReadOnly(); }
 
         protected EFCoreDbSession(IDbSessionBag dbSessionBag, IDbConnection connection, IServiceProvider serviceProvider) : base(dbSessionBag, connection)
         {
@@ -38,7 +38,7 @@ namespace KnstArchitecture.DbSessions
         public override void Commit()
         {
             base.Commit();
-            NotifyObserverUseTransaction();
+            NotifyObserversUseTransaction();
         }
 
         public virtual TContext GetCtx<TContext>() where TContext : KnstDbContext
@@ -68,7 +68,7 @@ namespace KnstArchitecture.DbSessions
         public override void Rollback()
         {
             base.Rollback();
-            NotifyObserverUseTransaction();
+            NotifyObserversUseTransaction();
         }
 
         public void SaveChanges()
@@ -99,11 +99,11 @@ namespace KnstArchitecture.DbSessions
         public new IEFCoreDbSession BeginTransaction()
         {
             base.BeginTransaction();
-            NotifyObserverUseTransaction();
+            NotifyObserversUseTransaction();
             return this;
         }
 
-        public void NotifyObserverUseTransaction()
+        public void NotifyObserversUseTransaction()
         {
             foreach (var observer in _dbContexts)
             {

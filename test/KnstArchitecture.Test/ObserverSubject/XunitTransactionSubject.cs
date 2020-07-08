@@ -15,11 +15,11 @@ namespace KnstArchitecture.Test.ObserverSubject
             var dbContext = ServiceProvider.GetRequiredService<TestContext>();
             var session = uow.CreateDbSession();
 
-            Assert.Empty(session.ReadonlyKnstDbContext);
+            Assert.Empty(session.Observers);
 
             session.Attach(dbContext);
 
-            Assert.Single(session.ReadonlyKnstDbContext);
+            Assert.Single(session.Observers);
         }
 
         [Fact]
@@ -30,11 +30,11 @@ namespace KnstArchitecture.Test.ObserverSubject
             var session = uow.CreateDbSession();
             session.Attach(dbContext);
 
-            Assert.Single(session.ReadonlyKnstDbContext);
+            Assert.Single(session.Observers);
 
             session.Detach(dbContext);
 
-            Assert.Empty(session.ReadonlyKnstDbContext);
+            Assert.Empty(session.Observers);
         }
 
         [Fact]
@@ -46,7 +46,7 @@ namespace KnstArchitecture.Test.ObserverSubject
             session.BeginTransaction();
 
             dbContext.DbSession = session;
-            session.NotifyObserverUseTransaction();
+            session.NotifyObserversUseTransaction();
 
             // ref: https://dapper-tutorial.net/zh-TW/knowledge-base/46566756/
             Assert.Equal(session.GetTransaction(), (dbContext.Database.CurrentTransaction as IInfrastructure<IDbTransaction>).Instance);
