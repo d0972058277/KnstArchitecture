@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.Common;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace KnstArchitecture.DbSessions
         private readonly IServiceProvider _serviceProvider;
         private readonly IServiceScope _serviceScope;
         private HashSet<KnstDbContext> _dbContexts;
+
+        public ReadOnlyCollection<KnstDbContext> ReadonlyKnstDbContext { get => _dbContexts.ToList().AsReadOnly(); }
 
         protected EFCoreDbSession(IDbSessionBag dbSessionBag, IDbConnection connection, IServiceProvider serviceProvider) : base(dbSessionBag, connection)
         {
@@ -34,7 +37,6 @@ namespace KnstArchitecture.DbSessions
 
         public override void Commit()
         {
-            SaveChanges();
             base.Commit();
             NotifyObserverUseTransaction();
         }
