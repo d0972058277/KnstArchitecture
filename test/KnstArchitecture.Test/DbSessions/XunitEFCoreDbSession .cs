@@ -1,3 +1,4 @@
+using System;
 using System.Data;
 using System.Transactions;
 using KnstArchitecture.EF.Test;
@@ -129,6 +130,21 @@ namespace KnstArchitecture.Test.DbSessions
             Assert.Null(transaction.GetTransaction());
 
             var exception = Assert.Throws<TransactionException>(() => { transaction.Rollback(); });
+        }
+
+        [Fact]
+        public void KnstContextDbSession()
+        {
+            var uow = ServiceProvider.GetRequiredService<ITestEFUnitOfWork>();
+            var defaultSession = uow.GetDefaultDbSession();
+            var anotherSession = uow.CreateDbSession();
+            var exceptionSession = uow.CreateDbSession();
+            var dbContext = uow.GetCtx<TestContext>();
+
+            dbContext.DbSession = defaultSession;
+            dbContext.DbSession = anotherSession;
+
+            Assert.Throws<InvalidOperationException>(() => dbContext.DbSession = exceptionSession);
         }
     }
 }
