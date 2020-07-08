@@ -23,7 +23,9 @@ namespace KnstArchitecture.Repos
 
         public List<IDbTransaction> Transactions => this.DbSession.SqlDbSessions.Select(s => s.GetTransaction()).ToList();
 
-        public void ClearDefaultFilter() => this.DbSession.ClearDefaultFilter();
+        public Func<List<ISqlDbSession>, ISqlDbSession> DefaultFilter => this.DbSession.DefaultFilter;
+
+        public void RemoveDefaultFilter() => this.DbSession.RemoveDefaultFilter();
 
         public ISqlDbSession Default() => this.DbSession.Default();
 

@@ -17,7 +17,7 @@ namespace KnstArchitecture.DbSessions
         private readonly IServiceScope _serviceScope;
         private HashSet<KnstDbContext> _dbContexts;
 
-        public ReadOnlyCollection<KnstDbContext> Observers { get => _dbContexts.ToList().AsReadOnly(); }
+        public IEnumerable<KnstDbContext> Observers { get => _dbContexts.ToList().AsReadOnly(); }
 
         protected EFCoreDbSession(IDbSessionBag dbSessionBag, IDbConnection connection, IServiceProvider serviceProvider) : base(dbSessionBag, connection)
         {
