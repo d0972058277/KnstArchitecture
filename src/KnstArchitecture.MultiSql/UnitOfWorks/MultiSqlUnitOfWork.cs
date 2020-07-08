@@ -10,7 +10,12 @@ namespace KnstArchitecture.UnitOfWorks
 {
     public class MultiSqlUnitOfWork : UnitOfWork, IMultiSqlUnitOfWork
     {
-        public MultiSqlUnitOfWork(IServiceProvider serviceProvider, IMultiSqlDbSession dbSession) : base(serviceProvider, dbSession) { }
+        protected ISqlRepoFactory _sqlRepoFactory;
+
+        public MultiSqlUnitOfWork(IServiceProvider serviceProvider, IMultiSqlDbSession dbSession, ISqlRepoFactory sqlRepoFactory) : base(serviceProvider, dbSession)
+        {
+            _sqlRepoFactory = sqlRepoFactory;
+        }
 
         public override IDbSession CreateDbSession() => (this as IMultiSqlUnitOfWork).CreateDbSession();
 
@@ -24,11 +29,9 @@ namespace KnstArchitecture.UnitOfWorks
 
         public virtual TRepo Use<TRepo>(ISqlDbSession dbSession) where TRepo : ISqlRepo
         {
-            var sqlRepoFactory = _serviceProvider.GetRequiredService<ISqlRepoFactory>();
-
             // 這個 Func 主要是設定 Constructor 當中的 Parameters
             // 在 Activator.CreateInstance 時塞入
-            var repo = sqlRepoFactory.Create<TRepo>(ctorParamInfos =>
+            var repo = _sqlRepoFactory.Create<TRepo>(ctorParamInfos =>
             {
                 var args = new List<object>();
                 foreach (var param in ctorParamInfos)
