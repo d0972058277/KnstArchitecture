@@ -1,11 +1,13 @@
 using System;
 using System.Data;
+using System.Data.Common;
 using KnstArchitecture.DbSessions;
 using KnstArchitecture.EF.DbContexts;
 using KnstArchitecture.Repos;
 using KnstArchitecture.Test;
 using KnstArchitecture.UnitOfWorks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace KnstArchitecture.EF.Test
@@ -24,7 +26,7 @@ namespace KnstArchitecture.EF.Test
             services.AddScoped<ITestEFUnitOfWork, TestEFUnitOfWork>();
             services.AddScoped<IEFCoreUnitOfWork>(sp => sp.GetRequiredService<ITestEFUnitOfWork>());
             services.TryAddKnstDbContexts();
-            services.AddTransient<IDbConnection>(sp => DbConnectionMoq.MockInterface());
+            services.AddTransient<IDbConnection>(sp => DbConnectionMoq.GetMemorySqlite());
 
             var serviceProvider = services.BuildServiceProvider();
             ServiceScope = serviceProvider.CreateScope();
@@ -64,9 +66,13 @@ namespace KnstArchitecture.EF.Test
     public class TestContext : KnstDbContext
     {
         public bool IsSaveChange { get; private set; } = false;
+
         public TestContext(IEFCoreUnitOfWork efUnitOfWork) : base(efUnitOfWork) { }
 
-        public override void InnerOnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
+        public override void InnerOnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite(DbSession.GetConnection() as DbConnection);
+        }
 
         public override int SaveChanges()
         {

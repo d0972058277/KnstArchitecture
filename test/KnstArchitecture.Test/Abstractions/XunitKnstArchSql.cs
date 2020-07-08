@@ -16,7 +16,7 @@ namespace KnstArchitecture.Sql.Test
         {
             var services = new ServiceCollection();
             services.AddKnstArchitectureSql();
-            services.AddTransient<IDbConnection>(sp => DbConnectionMoq.MockInterface());
+            services.AddTransient<IDbConnection>(sp => DbConnectionMoq.GetMemorySqlite());
 
             var serviceProvider = services.BuildServiceProvider();
             ServiceScope = serviceProvider.CreateScope();
