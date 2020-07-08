@@ -105,22 +105,80 @@ namespace KnstArchitecture.Test.UnitOfWorks
             Assert.Equal(session.GetCtx<TestContext>(), dbContext);
         }
 
-        [Fact(Skip = "還未實作")]
-        public void BeginTransaction() { }
+        [Fact]
+        public void BeginTransaction()
+        {
+            var uow = ServiceProvider.GetRequiredService<IEFCoreUnitOfWork>();
+            var bag = ServiceProvider.GetRequiredService<IDbSessionBag>();
+            var defaultSession = uow.GetDefaultDbSession();
 
-        [Fact(Skip = "還未實作")]
-        public void Commit() { }
+            uow.BeginTransaction();
 
-        [Fact(Skip = "還未實作")]
-        public void Rollback() { }
+            Assert.True(defaultSession.IsTransaction);
+        }
 
-        [Fact(Skip = "還未實作")]
-        public void BeginTransactionWithDbSession() { }
+        [Fact]
+        public void Commit()
+        {
+            var uow = ServiceProvider.GetRequiredService<IEFCoreUnitOfWork>();
+            var bag = ServiceProvider.GetRequiredService<IDbSessionBag>();
+            var defaultSession = uow.GetDefaultDbSession();
 
-        [Fact(Skip = "還未實作")]
-        public void CommitWithDbSession() { }
+            uow.BeginTransaction();
+            uow.Commit();
 
-        [Fact(Skip = "還未實作")]
-        public void RollbackWithDbSession() { }
+            Assert.False(defaultSession.IsTransaction);
+        }
+
+        [Fact]
+        public void Rollback()
+        {
+            var uow = ServiceProvider.GetRequiredService<IEFCoreUnitOfWork>();
+            var bag = ServiceProvider.GetRequiredService<IDbSessionBag>();
+            var defaultSession = uow.GetDefaultDbSession();
+
+            uow.BeginTransaction();
+            uow.Rollback();
+
+            Assert.False(defaultSession.IsTransaction);
+        }
+
+        [Fact]
+        public void BeginTransactionWithParameter()
+        {
+            var uow = ServiceProvider.GetRequiredService<IEFCoreUnitOfWork>();
+            var bag = ServiceProvider.GetRequiredService<IDbSessionBag>();
+            var session = uow.CreateDbSession();
+
+            uow.BeginTransaction(session);
+
+            Assert.True(session.IsTransaction);
+        }
+
+        [Fact]
+        public void CommitWithParameter()
+        {
+            var uow = ServiceProvider.GetRequiredService<IEFCoreUnitOfWork>();
+            var bag = ServiceProvider.GetRequiredService<IDbSessionBag>();
+            var session = uow.CreateDbSession();
+
+            uow.BeginTransaction(session);
+            uow.Commit(session);
+
+            Assert.False(session.IsTransaction);
+        }
+
+        [Fact]
+        public void RollbackWithParameter()
+        {
+            var uow = ServiceProvider.GetRequiredService<IEFCoreUnitOfWork>();
+            var bag = ServiceProvider.GetRequiredService<IDbSessionBag>();
+            var session = uow.CreateDbSession();
+
+            uow.BeginTransaction(session);
+            uow.Rollback(session);
+
+            Assert.False(session.IsTransaction);
+        }
     }
 }
