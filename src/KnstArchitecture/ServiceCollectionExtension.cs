@@ -14,7 +14,6 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             services.TryAddKnstArchitectureDbSessionBag();
             services.TryAddKnstArchitectureRepos();
-            services.TryAddKnstArchitectureServices();
             services.TryAddKnstArchitectureLazy();
 
             return services;
@@ -64,9 +63,9 @@ namespace Microsoft.Extensions.DependencyInjection
             return services;
         }
 
-        public static IServiceCollection TryAddKnstArchitectureServices(this IServiceCollection services)
+        public static IServiceCollection TryAddKnstArchitectureServices(this IServiceCollection services, ServiceLifetime lifetime)
         {
-            services.TryAddAllTypes<IService>(ServiceLifetime.Scoped);
+            services.TryAddAllTypes<IService>(lifetime);
             return services;
         }
 
