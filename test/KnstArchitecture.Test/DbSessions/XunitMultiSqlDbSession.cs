@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using KnstArchitecture.DbSessions;
 using KnstArchitecture.Multi.Test;
@@ -55,6 +56,9 @@ namespace KnstArchitecture.Test.DbSessions
         public void Default()
         {
             var session = ServiceProvider.GetRequiredService<IMultiSqlDbSession>();
+
+            Assert.Throws<InvalidOperationException>(() => session.Default());
+
             session.SetDefaultFilter(sessions => sessions.First());
             var defaultSession = session.Default();
 
