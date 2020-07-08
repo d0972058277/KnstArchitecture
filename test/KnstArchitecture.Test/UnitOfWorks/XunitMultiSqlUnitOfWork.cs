@@ -1,5 +1,5 @@
 using KnstArchitecture.DbSessions;
-using KnstArchitecture.Test.Abstractions;
+using KnstArchitecture.Multi.Test;
 using KnstArchitecture.UnitOfWorks;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
@@ -67,6 +67,76 @@ namespace KnstArchitecture.Test.UnitOfWorks
 
             Assert.NotNull(repo);
             Assert.Equal(session, repo.DbSession);
+        }
+
+        [Fact]
+        public void BeginTransaction()
+        {
+            var uow = ServiceProvider.GetRequiredService<IMultiSqlUnitOfWork>();
+            var defaultDbSession = uow.GetDefaultDbSession();
+            uow.BeginTransaction();
+
+            Assert.True(defaultDbSession.IsTransaction);
+            Assert.All(defaultDbSession.SqlDbSessions, session => Assert.True(session.IsTransaction));
+        }
+
+        [Fact]
+        public void Commit()
+        {
+            var uow = ServiceProvider.GetRequiredService<IMultiSqlUnitOfWork>();
+            var defaultDbSession = uow.GetDefaultDbSession();
+            uow.BeginTransaction();
+            uow.Commit();
+
+            Assert.False(defaultDbSession.IsTransaction);
+            Assert.All(defaultDbSession.SqlDbSessions, session => Assert.False(session.IsTransaction));
+        }
+
+        [Fact]
+        public void Rollback()
+        {
+            var uow = ServiceProvider.GetRequiredService<IMultiSqlUnitOfWork>();
+            var defaultDbSession = uow.GetDefaultDbSession();
+            uow.BeginTransaction();
+            uow.Rollback();
+
+            Assert.False(defaultDbSession.IsTransaction);
+            Assert.All(defaultDbSession.SqlDbSessions, session => Assert.False(session.IsTransaction));
+        }
+
+        [Fact]
+        public void BeginTransactionWithDbSession()
+        {
+            var uow = ServiceProvider.GetRequiredService<IMultiSqlUnitOfWork>();
+            var newDbSession = uow.CreateDbSession();
+            uow.BeginTransaction(newDbSession);
+
+            Assert.True(newDbSession.IsTransaction);
+            Assert.All(newDbSession.SqlDbSessions, session => Assert.True(session.IsTransaction));
+        }
+
+        [Fact]
+        public void CommitWithDbSession()
+        {
+            var uow = ServiceProvider.GetRequiredService<IMultiSqlUnitOfWork>();
+            var newDbSession = uow.CreateDbSession();
+            uow.BeginTransaction(newDbSession);
+            uow.Commit(newDbSession);
+
+            Assert.False(newDbSession.IsTransaction);
+            Assert.All(newDbSession.SqlDbSessions, session => Assert.False(session.IsTransaction));
+        }
+
+        [Fact]
+        public void RollbackWithDbSession()
+        {
+            var uow = ServiceProvider.GetRequiredService<IMultiSqlUnitOfWork>();
+            var newDbSession = uow.CreateDbSession();
+            uow.BeginTransaction(newDbSession);
+            uow.Rollback(newDbSession);
+
+            Assert.False(newDbSession.IsTransaction);
+            Assert.All(newDbSession.SqlDbSessions, session => Assert.False(session.IsTransaction));
         }
     }
 }

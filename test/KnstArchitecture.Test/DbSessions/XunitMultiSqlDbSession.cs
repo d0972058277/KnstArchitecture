@@ -1,6 +1,6 @@
 using System.Linq;
 using KnstArchitecture.DbSessions;
-using KnstArchitecture.Test.Abstractions;
+using KnstArchitecture.Multi.Test;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 

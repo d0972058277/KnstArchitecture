@@ -104,5 +104,23 @@ namespace KnstArchitecture.Test.UnitOfWorks
             Assert.NotNull(dbContext);
             Assert.Equal(session.GetCtx<TestContext>(), dbContext);
         }
+
+        [Fact(Skip = "還未實作")]
+        public void BeginTransaction() { }
+
+        [Fact(Skip = "還未實作")]
+        public void Commit() { }
+
+        [Fact(Skip = "還未實作")]
+        public void Rollback() { }
+
+        [Fact(Skip = "還未實作")]
+        public void BeginTransactionWithDbSession() { }
+
+        [Fact(Skip = "還未實作")]
+        public void CommitWithDbSession() { }
+
+        [Fact(Skip = "還未實作")]
+        public void RollbackWithDbSession() { }
     }
 }
