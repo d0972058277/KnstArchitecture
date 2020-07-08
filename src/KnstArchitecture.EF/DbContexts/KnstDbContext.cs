@@ -26,6 +26,9 @@ namespace KnstArchitecture.EF.DbContexts
             get => _dbSession;
             set
             {
+                // dbSession 相同直接 return
+                if (_dbSession == value) return;
+                // dbSession 不同判斷有無設定過，有設定過則拋出 Exception
                 if (!_defaultDbSessionIsUsed)
                 {
                     throw new InvalidOperationException("DbSession 不能被設定兩次");
