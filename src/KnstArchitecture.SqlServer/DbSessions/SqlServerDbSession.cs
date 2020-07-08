@@ -7,10 +7,6 @@ namespace KnstArchitecture.DbSessions
     {
         public SqlServerDbSession(IDbSessionBag dbSessionBag, IDbConnection connection, IServiceProvider serviceProvider) : base(dbSessionBag, connection, serviceProvider) { }
 
-        public new ISqlServerDbSession BeginTransaction()
-        {
-            base.BeginTransaction();
-            return this;
-        }
+        ISqlServerDbSession ISqlServerDbSession.BeginTransaction() => base.BeginTransaction() as ISqlServerDbSession;
     }
 }
