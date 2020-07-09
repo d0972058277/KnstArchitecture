@@ -13,7 +13,6 @@
             "args": [],
             "cwd": "${workspaceFolder}/KnstArchitecture.Test",
             "console": "internalConsole",
-            "stopAtEntry": false
         }
     ]
 }
