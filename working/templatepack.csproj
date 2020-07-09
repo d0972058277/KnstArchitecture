@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>3.1.0</PackageVersion>
+    <PackageVersion>3.2.0-pre</PackageVersion>
     <PackageId>KnstArchitecture.Templates</PackageId>
     <Title>KnstArchitecture Templates</Title>
     <Authors>PorriDG3</Authors>

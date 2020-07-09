@@ -1,17 +1,25 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 using CorrelationId;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MySql.Data.MySqlClient;
 using Serilog;
 
-namespace KnstApiMySql
+namespace KnstApiMultiSql
 {
     public class Startup
     {
@@ -29,10 +37,12 @@ namespace KnstApiMySql
         {
             services.AddControllers();
 
-            // 註冊 KnstArch.MySql 的框架
-            services.AddKnstArchitectureMySqlWithQuery(Configuration.GetConnectionString("SlaverConnection"));
-            // 註冊 MySql 的連線
-            services.AddTransient<MySqlConnection>(sp => new MySqlConnection(Configuration.GetConnectionString("DefaultConnection")));
+            // 註冊 KnstArch.MultiSql 的框架
+            services.AddKnstArchitectureMultiSql();
+            // 註冊不同 IDbConnection 的連線
+            services.AddTransient<IDbConnection>(sp => new MySqlConnection(Configuration.GetConnectionString("FirstConnection")));
+            services.AddTransient<IDbConnection>(sp => new SqlConnection(Configuration.GetConnectionString("SecondConnection")));
+            services.AddTransient<IDbConnection>(sp => new SqliteConnection(Configuration.GetConnectionString("ThirdConnection")));
 
             // 註冊所有實作 IService 的類別
             services.TryAddKnstArchitectureServices(ServiceLifetime.Transient);

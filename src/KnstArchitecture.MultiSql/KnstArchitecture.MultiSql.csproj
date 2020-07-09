@@ -6,7 +6,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageVersion>3.2.0-pre</PackageVersion>
+    <PackageVersion>3.2.0-pre-update1</PackageVersion>
     <Authors>PorriDG3</Authors>
     <Owners>PorriDG3</Owners>
     <PackageProjectUrl>https://github.com/d0972058277/KnstArchitecture/tree/3.2.0</PackageProjectUrl>

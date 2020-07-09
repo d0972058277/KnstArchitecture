@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace KnstApiMySql.Models.Test
+namespace KnstApiSqlServer.Models.Test
 {
     public partial class TestContext : KnstDbContext
     {
@@ -22,7 +22,7 @@ namespace KnstApiMySql.Models.Test
         public override void InnerOnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var loggerFactory = _serviceProvider.GetRequiredService<ILoggerFactory>();
-            optionsBuilder.UseMySql(DbSession.GetConnection<DbConnection>()).UseLoggerFactory(loggerFactory);
+            optionsBuilder.UseSqlServer(DbSession.GetConnection<DbConnection>()).UseLoggerFactory(loggerFactory);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -41,9 +41,7 @@ namespace KnstApiMySql.Models.Test
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasColumnName("name")
-                    .HasColumnType("varchar(45)")
-                    .HasCharSet("utf8")
-                    .HasCollation("utf8_general_ci");
+                    .HasColumnType("varchar(45)");
 
                 entity.Property(e => e.RowDatetime)
                     .HasColumnName("row_datetime")

@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using KnstArchitecture.Repos;
 using KnstArchitecture.UnitOfWorks;
 
-namespace KnstApiMySql.Repos.Example
+namespace KnstApiSqlServer.Repos.Example
 {
     public class Examplerepo : EFCoreRepo<Models.Test.TestContext, Models.Test.Example>, IExampleRepo
     {

@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 using Dapper;
 using KnstArchitecture.Queries;
 
-namespace KnstApiMySql.Queries.Example
+namespace KnstApiSqlServer.Queries.Example
 {
-    public class ExampleQuery : MySqlQueryBase, IExampleQuery
+    public class ExampleQuery : SqlServerQueryBase, IExampleQuery
     {
-        public ExampleQuery(MySqlQueryConnectionFactory queryConnectionFactory) : base(queryConnectionFactory) { }
+        public ExampleQuery(SqlServerQueryConnectionFactory queryConnectionFactory) : base(queryConnectionFactory) { }
 
         public async Task<IEnumerable<Models.Test.Example>> GetExamplesAsync()
         {

@@ -4,14 +4,14 @@ using System.IO;
 using CorrelationId;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using MySql.Data.MySqlClient;
 using Serilog;
 
-namespace KnstApiMySql
+namespace KnstApiSqlServer
 {
     public class Startup
     {
@@ -29,10 +29,10 @@ namespace KnstApiMySql
         {
             services.AddControllers();
 
-            // 註冊 KnstArch.MySql 的框架
-            services.AddKnstArchitectureMySqlWithQuery(Configuration.GetConnectionString("SlaverConnection"));
-            // 註冊 MySql 的連線
-            services.AddTransient<MySqlConnection>(sp => new MySqlConnection(Configuration.GetConnectionString("DefaultConnection")));
+            // 註冊 KnstArch.SqlServer 的框架
+            services.AddKnstArchitectureSqlServerWithQuery(Configuration.GetConnectionString("SlaverConnection"));
+            // 註冊 SqlServer 的連線
+            services.AddTransient<SqlConnection>(sp => new SqlConnection(Configuration.GetConnectionString("DefaultConnection")));
 
             // 註冊所有實作 IService 的類別
             services.TryAddKnstArchitectureServices(ServiceLifetime.Transient);

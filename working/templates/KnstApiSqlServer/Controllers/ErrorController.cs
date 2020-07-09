@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace KnstApiMySql.Controllers
+namespace KnstApiSqlServer.Controllers
 {
     [ApiController]
     public class ErrorController : ControllerBase

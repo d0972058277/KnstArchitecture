@@ -2,16 +2,16 @@
   "$schema": "http://json.schemastore.org/template",
   "author": "PorriDG3",
   "classifications": [
-    "KnstArchitecture.MySql",
+    "KnstArchitecture.SqlServer",
     "WebApi"
   ],
-  "identity": "KnstArch.Template.MySql",
-  "name": "Knst Arch Template MySql",
-  "shortName": "knst-my",
+  "identity": "KnstArch.Template.SqlServer",
+  "name": "Knst Arch Template SqlServer",
+  "shortName": "knst-ms",
   "tags": {
     "language": "C#",
     "type": "project"
   },
-  "sourceName": "KnstApiMySql",
+  "sourceName": "KnstApiSqlServer",
   "preferNameDirectory": true
 }
