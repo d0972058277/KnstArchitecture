@@ -19,16 +19,6 @@
             "type": "process",
             "args": [
                 "test",
-                "${workspaceFolder}/KnstArchitecture.Test/KnstArchitecture.Test.csproj"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "test with coverage",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "test",
                 "/p:CollectCoverage=true",
                 "/p:CoverletOutputFormat=lcov",
                 "/p:CoverletOutput=./lcov.info",
