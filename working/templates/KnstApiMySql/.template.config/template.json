@@ -5,9 +5,9 @@
     "KnstArchitecture.MySql",
     "WebApi"
   ],
-  "identity": "KnstArchitecture.Toy.EF.MySql",
-  "name": "Knst Project Template EF MySql",
-  "shortName": "knst-ef",
+  "identity": "KnstArch.Template.MySql",
+  "name": "Knst Arch Template MySql",
+  "shortName": "knst-my",
   "tags": {
     "language": "C#",
     "type": "project"

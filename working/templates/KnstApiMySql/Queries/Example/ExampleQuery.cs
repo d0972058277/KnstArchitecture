@@ -7,7 +7,7 @@ namespace KnstApiMySql.Queries.Example
 {
     public class ExampleQuery : MySqlQueryBase, IExampleQuery
     {
-        public ExampleQuery(MySqlQueryConnectionBuilder queryConnectionBuilder) : base(queryConnectionBuilder) { }
+        public ExampleQuery(MySqlQueryConnectionFactory queryConnectionFactory) : base(queryConnectionFactory) { }
 
         public async Task<IEnumerable<Models.Test.Example>> GetExamplesAsync()
         {

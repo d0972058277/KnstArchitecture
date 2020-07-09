@@ -13,6 +13,7 @@ namespace KnstApiMySql.Controllers
         public IActionResult Error() => Problem();
 
         [HttpGet("Test")]
-        public void Test() => throw new Exception("Test");
+        public void Test() =>
+            throw new Exception("Test");
     }
 }

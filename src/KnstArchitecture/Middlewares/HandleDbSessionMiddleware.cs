@@ -1,8 +1,8 @@
 using System.Threading.Tasks;
+using KnstArchitecture.DbSessions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using KnstArchitecture.DbSessions;
 
 namespace KnstArchitecture.Middlewares
 {
@@ -22,8 +22,8 @@ namespace KnstArchitecture.Middlewares
             IDbSessionBag dbSessionBag = null;
             try
             {
-                await _next(context);
                 dbSessionBag = context.RequestServices.GetRequiredService<IDbSessionBag>();
+                await _next(context);
                 if (dbSessionBag.Empty) return;
                 dbSessionBag?.Commit();
             }

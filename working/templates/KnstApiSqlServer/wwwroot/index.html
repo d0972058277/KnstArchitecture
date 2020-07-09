@@ -1,0 +1,164 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kingnet Smartlife</title>
+    <link rel="icon" href="https://www.kingnetsmart.com.tw/images/chillife.ico?18100500" type="image/x-icon">
+    <style>
+
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-family: '微軟正黑體';
+        }
+
+        body {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: #20B2AA;
+        }
+
+        .grad {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.25)));
+            z-index: 1;
+            opacity: 0.5;
+        }
+
+        .mainContent {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: 1000px;
+            height: 500px;
+            z-index: 2;
+        }
+
+            .mainContent:after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+
+            .mainContent .logo {
+                float: left;
+                padding: 50px 0;
+                width: 150px;
+                box-sizing: border-box;
+            }
+
+                .mainContent .logo img {
+                    width: 100%;
+                }
+
+            .mainContent .mainText {
+                float: left;
+                width: 800px;
+                padding: 40px 30px;
+                box-sizing: border-box;
+            }
+
+                .mainContent .mainText h1 {
+                    line-height: 60px;
+                    margin-bottom: 15px;
+                    font-size: 40px;
+                    color: #FFF;
+                }
+
+                .mainContent .mainText p {
+                    line-height: 40px;
+                    font-size: 25px;
+                    color: #FFF;
+                }
+
+                    .mainContent .mainText p span {
+                        font-weight: bold;
+                        color: #f5d278;
+                    }
+
+            .mainContent .mainBtn {
+                display: block;
+                font-family: inherit;
+                border: 3px solid #f5d278;
+                width: 200px;
+                height: 45px;
+                margin: 15px 0 5px;
+                background-color: #fff;
+                line-height: 47px;
+                color: #46B398;
+                font-size: 19px;
+                letter-spacing: 5px;
+                font-weight: 700;
+                text-align: center;
+                border-radius: 50em;
+                cursor: pointer;
+                position: relative;
+            }
+
+                .mainContent .mainBtn:hover {
+                    background-color: #fdf2d5;
+                }
+
+                .mainContent .mainBtn .finger-img {
+                    position: absolute;
+                    right: -15px;
+                    bottom: -50px;
+                    width: 70px;
+                    animation: introFinger 1.5s infinite;
+                }
+
+        .refreshDiv {
+            margin: 20px 0 5px;
+            border-top: 1px solid #227356;
+            padding-top: 20px;
+        }
+
+        .mainText .refreshDiv p {
+            font-size: 21px;
+            line-height: 1.5;
+        }
+
+        @keyframes introFinger {
+            0% {
+                bottom: -50px;
+            }
+
+            50% {
+                bottom: -40px;
+            }
+
+            100% {
+                bottom: -50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="mainContent">
+        <div class="logo">
+            <img src="https://firebasestorage.googleapis.com/v0/b/kingnetcare/o/CHK%2Flogo%2Flogo_w.png?alt=media&token=fdf1a144-9733-4c20-91f0-ab961c291a9d" alt="">
+        </div>
+        <div class="mainText">
+            <h1>Kingnet Smartlife</h1>
+            <p>智生活。社區的生活服務平台</p>
+            <p><span> 提供便利與安心的智慧科技，為你解決生活中的各種煩惱 </span></p>
+            <div class="refreshDiv">
+                <p>客服中心：4128166 (手機請加02)</p>
+            </div>
+        </div>
+    </div>
+    <div class="grad"></div>
+</body>
+</html>

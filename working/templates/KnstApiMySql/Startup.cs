@@ -1,16 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
 using CorrelationId;
-using KnstArchitecture.Queries;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MySql.Data.MySqlClient;
 using Serilog;
@@ -33,21 +29,13 @@ namespace KnstApiMySql
         {
             services.AddControllers();
 
-            services.AddKnstArchitecture();
-            services.AddTransient<IDbConnection>(sp => new MySqlConnection(Configuration.GetConnectionString("DefaultConnection")));
+            // 註冊 KnstArch.MySql 的框架
+            services.AddKnstArchitectureMySqlWithQuery(Configuration.GetConnectionString("SlaverConnection"));
+            // 註冊 MySql 的連線
+            services.AddTransient<MySqlConnection>(sp => new MySqlConnection(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddKnstArchitectureQueries();
-            services.AddSingleton<MySqlQueryConnectionBuilder>(new MySqlQueryConnectionBuilder(Configuration.GetConnectionString("SlaverConnection")));
-
-            services.AddKnstArchitectureMySql();
-            services.AddTransient<DbContextOptionsBuilder, DbContextOptionsBuilder<Models.Test.TestContext>>(sp =>
-            {
-                var loggerFactory = sp.GetRequiredService<ILoggerFactory>();
-                var builder = new DbContextOptionsBuilder<Models.Test.TestContext>().UseLoggerFactory(loggerFactory);
-                return builder;
-            });
-
-            services.AddKnstArchitectureServices();
+            // 註冊所有實作 IService 的類別
+            services.TryAddKnstArchitectureServices(ServiceLifetime.Transient);
 
             services.AddSwaggerGen(c =>
             {

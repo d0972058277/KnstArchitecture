@@ -7,18 +7,18 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Dapper" Version="2.0.35"/>
-    <PackageReference Include="CorrelationId" Version="2.1.0"/>
-    <PackageReference Include="Serilog.Enrichers.CorrelationId" Version="3.0.1"/>
-    <PackageReference Include="Serilog.Exceptions" Version="5.4.0"/>
-    <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1"/>
-    <PackageReference Include="Serilog.Extensions.Logging" Version="3.0.1"/>
-    <PackageReference Include="Serilog.AspNetCore" Version="3.2.0"/>
-    <PackageReference Include="Serilog.Sinks.Seq" Version="4.0.0"/>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.4.1"/>
-    <PackageReference Include="KnstArchitecture.MySql" Version="3.1.0"/>
+    <PackageReference Include="Dapper" Version="2.0.35" />
+    <PackageReference Include="CorrelationId" Version="2.1.0" />
+    <PackageReference Include="Serilog.Enrichers.CorrelationId" Version="3.0.1" />
+    <PackageReference Include="Serilog.Exceptions" Version="5.4.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="3.0.1" />
+    <PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
+    <PackageReference Include="Serilog.Sinks.Seq" Version="4.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.4.1" />
+    <PackageReference Include="KnstArchitecture.MySql" Version="3.2.0-pre-update2" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="wwwroot\"/>
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 </Project>

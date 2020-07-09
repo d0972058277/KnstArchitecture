@@ -2,12 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <PackOnBuild>true</PackOnBuild>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageVersion>3.2.0-pre</PackageVersion>
+    <PackageVersion>3.2.0-pre-update2</PackageVersion>
     <Authors>PorriDG3</Authors>
     <Owners>PorriDG3</Owners>
-    <PackageProjectUrl>https://github.com/d0972058277/KnstArchitecture/tree/3.1.1</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/d0972058277/KnstArchitecture/tree/3.2.0</PackageProjectUrl>
     <Title>KnstArchitecture.EF</Title>
     <Description>KnstArchitecture.EF</Description>
     <Copyright>PorriDG3</Copyright>

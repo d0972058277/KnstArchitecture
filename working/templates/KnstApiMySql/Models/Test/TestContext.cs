@@ -1,14 +1,29 @@
 ﻿using System;
+using System.Data.Common;
+using KnstArchitecture.EF.DbContexts;
+using KnstArchitecture.UnitOfWorks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace KnstApiMySql.Models.Test
 {
-    public partial class TestContext : DbContext
+    public partial class TestContext : KnstDbContext
     {
-        public TestContext(DbContextOptions<TestContext> options) : base(options) { }
+        private readonly IServiceProvider _serviceProvider;
+        public TestContext(IEFCoreUnitOfWork efUnitOfWork, IServiceProvider serviceProvider) : base(efUnitOfWork)
+        {
+            _serviceProvider = serviceProvider;
+        }
 
         public virtual DbSet<Example> Example { get; set; }
+
+        public override void InnerOnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            var loggerFactory = _serviceProvider.GetRequiredService<ILoggerFactory>();
+            optionsBuilder.UseMySql(DbSession.GetConnection<DbConnection>()).UseLoggerFactory(loggerFactory);
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
