@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageVersion>1.0.0</PackageVersion>
+    <Authors>PorriDG3</Authors>
+    <Owners>PorriDG3</Owners>
+    <PackageProjectUrl>https://github.com/d0972058277/KnstArchitecture/tree/3.2.0</PackageProjectUrl>
+    <Title>KnstArchitecture.SequentialGuid</Title>
+    <Description>KnstArchitecture.SequentialGuid</Description>
+    <Copyright>PorriDG3</Copyright>
+    <Summary>KnstArchitecture.SequentialGuid</Summary>
+  </PropertyGroup>
+
+</Project>
