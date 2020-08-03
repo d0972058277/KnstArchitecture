@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnstArchitecture.SqlServer"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnstArchitecture.SequentialGuid", "KnstArchitecture.SequentialGuid\KnstArchitecture.SequentialGuid.csproj", "{BD973419-30CC-49F7-A5ED-486F4F921306}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnstArchitecture.Extensions", "KnstArchitecture.Extensions\KnstArchitecture.Extensions.csproj", "{97D67AE6-7E4E-409D-A02F-7D3CB9744ED6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -156,5 +158,17 @@ Global
 		{BD973419-30CC-49F7-A5ED-486F4F921306}.Release|x64.Build.0 = Release|Any CPU
 		{BD973419-30CC-49F7-A5ED-486F4F921306}.Release|x86.ActiveCfg = Release|Any CPU
 		{BD973419-30CC-49F7-A5ED-486F4F921306}.Release|x86.Build.0 = Release|Any CPU
+		{97D67AE6-7E4E-409D-A02F-7D3CB9744ED6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97D67AE6-7E4E-409D-A02F-7D3CB9744ED6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97D67AE6-7E4E-409D-A02F-7D3CB9744ED6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{97D67AE6-7E4E-409D-A02F-7D3CB9744ED6}.Debug|x64.Build.0 = Debug|Any CPU
+		{97D67AE6-7E4E-409D-A02F-7D3CB9744ED6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{97D67AE6-7E4E-409D-A02F-7D3CB9744ED6}.Debug|x86.Build.0 = Debug|Any CPU
+		{97D67AE6-7E4E-409D-A02F-7D3CB9744ED6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97D67AE6-7E4E-409D-A02F-7D3CB9744ED6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97D67AE6-7E4E-409D-A02F-7D3CB9744ED6}.Release|x64.ActiveCfg = Release|Any CPU
+		{97D67AE6-7E4E-409D-A02F-7D3CB9744ED6}.Release|x64.Build.0 = Release|Any CPU
+		{97D67AE6-7E4E-409D-A02F-7D3CB9744ED6}.Release|x86.ActiveCfg = Release|Any CPU
+		{97D67AE6-7E4E-409D-A02F-7D3CB9744ED6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
