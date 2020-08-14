@@ -27,5 +27,43 @@ namespace System.Linq
         {
             return enumable.Count() == 1;
         }
+
+        public static IEnumerable<T> Swap<T>(this IEnumerable<T> source, int firstIndex, int secondIndex)
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException("source");
+            }
+            T[] array = source.ToArray();
+            return Swap<T>(array, firstIndex, secondIndex);
+        }
+
+        private static IEnumerable<T> Swap<T>(T[] array, int firstIndex, int secondIndex)
+        {
+            if (firstIndex < 0 || firstIndex >= array.Length)
+            {
+                throw new ArgumentOutOfRangeException("firstIndex");
+            }
+            if (secondIndex < 0 || secondIndex >= array.Length)
+            {
+                throw new ArgumentOutOfRangeException("secondIndex");
+            }
+            T tmp = array[firstIndex];
+            array[firstIndex] = array[secondIndex];
+            array[secondIndex] = tmp;
+            return array;
+        }
+
+        public static IEnumerable<T> Swap<T>(this IEnumerable<T> source, T firstItem, T secondItem)
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException("source");
+            }
+            T[] array = source.ToArray();
+            int firstIndex = Array.FindIndex(array, i => i.Equals(firstItem));
+            int secondIndex = Array.FindIndex(array, i => i.Equals(secondItem));
+            return Swap(array, firstIndex, secondIndex);
+        }
     }
 }
