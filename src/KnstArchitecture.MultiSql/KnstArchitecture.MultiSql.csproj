@@ -1,9 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
-    <ProjectReference Include="..\KnstArchitecture.Sql\KnstArchitecture.Sql.csproj"/>
+    <ProjectReference Include="..\KnstArchitecture.Sql\KnstArchitecture.Sql.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageVersion>3.2.0-pre-update2</PackageVersion>
+    <Authors>PorriDG3</Authors>
+    <Owners>PorriDG3</Owners>
+    <PackageProjectUrl>https://github.com/d0972058277/KnstArchitecture/tree/3.2.0</PackageProjectUrl>
+    <Title>KnstArchitecture.MultiSql</Title>
+    <Description>KnstArchitecture.MultiSql</Description>
+    <Copyright>PorriDG3</Copyright>
+    <Summary>KnstArchitecture.MultiSql</Summary>
   </PropertyGroup>
 </Project>

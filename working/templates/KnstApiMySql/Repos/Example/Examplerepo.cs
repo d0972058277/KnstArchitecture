@@ -1,10 +1,13 @@
 using System.Threading.Tasks;
 using KnstArchitecture.Repos;
+using KnstArchitecture.UnitOfWorks;
 
 namespace KnstApiMySql.Repos.Example
 {
     public class Examplerepo : EFCoreRepo<Models.Test.TestContext, Models.Test.Example>, IExampleRepo
     {
+        public Examplerepo(IEFCoreUnitOfWork unitOfWork) : base(unitOfWork) { }
+
         public async Task DeleteExampleAsync(int id)
         {
             var example = await EntitySet.FindAsync(id);

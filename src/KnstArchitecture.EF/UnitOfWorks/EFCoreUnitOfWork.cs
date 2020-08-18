@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using KnstArchitecture.DbSessions;
 using KnstArchitecture.EF.DbContexts;
 using KnstArchitecture.Repos;
@@ -31,5 +32,9 @@ namespace KnstArchitecture.UnitOfWorks
         public TContext GetCtx<TContext>(IEFCoreDbSession dbSession) where TContext : KnstDbContext => dbSession.GetCtx<TContext>();
 
         public new IEFCoreDbSession GetDefaultDbSession() => base.GetDefaultDbSession() as IEFCoreDbSession;
+
+        public Task SaveChangesAsync() => (this.GetDefaultDbSession() as IEFCoreDbSession).SaveChangesAsync();
+
+        public Task SaveChangesAsync(IEFCoreDbSession dbSession) => dbSession.SaveChangesAsync();
     }
 }

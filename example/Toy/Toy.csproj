@@ -29,5 +29,9 @@
     <ProjectReference Include="..\..\src\KnstArchitecture.MongoDB\KnstArchitecture.MongoDB.csproj" />
     <ProjectReference Include="..\..\src\KnstArchitecture.MultiSql\KnstArchitecture.MultiSql.csproj" />
   </ItemGroup>
-  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties appsettings_1json__JsonSchema="" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

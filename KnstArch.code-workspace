@@ -13,6 +13,10 @@
 			"path": "example"
 		},
 		{
+			"name": "working",
+			"path": "working"
+		},
+		{
 			"name": "KnstArchitecture",
 			"path": "."
 		}
