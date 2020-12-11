@@ -2,6 +2,6 @@ namespace KnstArchitecture.Queries
 {
     public abstract class MySqlQueryBase : QueryBase
     {
-        protected MySqlQueryBase(MySqlQueryConnectionFactory queryConnectionBuilder) : base(queryConnectionBuilder) { }
+        protected MySqlQueryBase(MySqlQueryConnectionFactory queryConnectionFactory) : base(queryConnectionFactory) { }
     }
 }
