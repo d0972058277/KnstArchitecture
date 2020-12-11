@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using KnstArchitecture.DbSessions;
 using KnstArchitecture.EF.DbContexts;
 using KnstArchitecture.Repos;
@@ -12,6 +13,8 @@ namespace KnstArchitecture.UnitOfWorks
         TRepo Use<TRepo>(IEFCoreDbSession dbSession) where TRepo : IEFCoreRepo;
         void SaveChanges();
         void SaveChanges(IEFCoreDbSession dbSession);
+        Task SaveChangesAsync();
+        Task SaveChangesAsync(IEFCoreDbSession dbSession);
         TContext GetCtx<TContext>() where TContext : KnstDbContext;
         TContext GetCtx<TContext>(IEFCoreDbSession dbSession) where TContext : KnstDbContext;
     }

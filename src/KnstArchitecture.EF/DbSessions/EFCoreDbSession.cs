@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.Common;
 using System.Linq;
+using System.Threading.Tasks;
 using KnstArchitecture.EF;
 using KnstArchitecture.EF.DbContexts;
 using Microsoft.EntityFrameworkCore;
@@ -83,6 +84,14 @@ namespace KnstArchitecture.DbSessions
             foreach (var dbContext in _dbContexts)
             {
                 dbContext.SaveChanges();
+            }
+        }
+
+        public async Task SaveChangesAsync()
+        {
+            foreach (var dbContext in _dbContexts)
+            {
+                await dbContext.SaveChangesAsync();
             }
         }
 
